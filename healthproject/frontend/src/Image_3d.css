@@ -1,0 +1,65 @@
+.container-wrapper5 {
+    margin:0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+.container5 {
+    /* display: flex; */
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    width: 80%;
+  max-width: 700px;
+  height: 400px;
+  }
+  
+  .image-section {
+    flex: 1;
+    position: relative;
+  }
+  
+  .overlap-image {
+    width: 120%;
+    height: 120%;
+    object-fit: cover;
+    position: absolute;
+
+    /* top: -10%; */
+    /* left: -10%; */
+    /* transform: perspective(1000px) rotateY(10deg) scale(1.1); */
+    filter: drop-shadow(10px 10px 30px rgba(0,0,0,0.3));
+  }
+  
+  .login-section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f5f5;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  /* input, button {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+  }
+  
+  button {
+    background-color: #5c2474;
+    color: white;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #7a3f8d;
+  }
+   */

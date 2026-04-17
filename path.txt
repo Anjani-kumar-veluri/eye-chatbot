@@ -1,0 +1,29 @@
+/kaggle/input/coco-2017-dataset/coco2017/train2017 :  /home/bhcp0089/Desktop/AiMedicalChatbot_updated/coco/non_eye_train
+
+base_dir = '/kaggle/working'  :  /home/bhcp0089/Desktop/AiMedicalChatbot_updated/data
+
+source_folder = '/kaggle/input/mouth-and-oral-diseases-mod/Training/CoS'  :  /home/bhcp0089/Desktop/AiMedicalChatbot_updated/archive/preprocessed/A
+
+
+destination_folder = '/kaggle/working/skin_train'  :  /home/bhcp0089/Desktop/AiMedicalChatbot_updated/data/eye_train
+
+source_folder = "/kaggle/input/coco-2017-dataset/coco2017/test2017"  :  /home/bhcp0089/Desktop/AiMedicalChatbot_updated/coco/non_eye_train
+
+destination_folder = "/kaggle/working/non_skint"  : /home/bhcp0089/Desktop/AiMedicalChatbot_updated/data/non_eye_train
+
+source_folder = "/kaggle/working/non_skin_train"  : /home/bhcp0089/Desktop/AiMedicalChatbot_updated/data/non_eye_train
+
+destination_folder = "/kaggle/working/non_skin_test"  :  /home/bhcp0089/Desktop/AiMedicalChatbot_updated/data/non_eye_test
+
+ham10000_dir = '/kaggle/input/ham1000-segmentation-and-classification/images' : /home/bhcp0089/Desktop/AiMedicalChatbot_updated/archive/preprocessed/H
+
+coco_dir = '/kaggle/input/coco-2017-dataset/coco2017/test2017' :  /home/bhcp0089/Desktop/AiMedicalChatbot_updated/coco/non_eye_train
+
+base_dir = '/kaggle/working/skin_vs_non_skin ' :  /home/bhcp0089/Desktop/AiMedicalChatbot_updated/data/eye_vs_non_eye
+
+
+skin_dir = "/kaggle/working/skin_test" : /home/bhcp0089/Desktop/AiMedicalChatbot_updated//data/eye_vs_non_eye/eye
+
+non_skin_dir="/kaggle/working/skin_vs_non_skin test/non_skin test"  : /home/bhcp0089/Desktop/AiMedicalChatbot_updated/data/non_eye_test
+
+working_dir = "/kaggle/working" :  /home/bhcp0089/Desktop/AiMedicalChatbot_updated//data/eye_vs_non_eye

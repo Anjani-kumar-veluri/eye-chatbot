@@ -1,0 +1,221 @@
+
+body {
+  margin: 0;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #041944, #144280);
+}
+
+.container-wrapper {
+  margin:0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container2 {
+  display: flex;
+  
+  background:linear-gradient(to bottom right, #4d76a8,#062357);
+
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  overflow: hidden;
+  width: 80%;
+  max-width: 700px;
+  height: 400px; 
+}
+.image-section1 {
+  flex: 1; /* Allow the image to take equal space */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-section1 img {
+  width: 100%; /* Ensure the image is fully responsive */
+  max-width: 250px; /* Adjusted to match layout */
+  height: auto;
+  object-fit: cover;
+}
+/* .image-section {
+  flex: 0;
+}
+
+.image-section1 img {
+  width: 90%;
+  height: 100%;
+  object-fit: cover;
+} */
+
+.login-section1 {
+  flex: 1; /* Allow it to take equal space */
+  width: 45%; /* Adjusted width */
+  height: 75%; /* Adjusted height */
+  padding: 30px;
+  margin-top:2%;
+  margin-right:3%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  text-align: center;
+
+  /* Gradient Background */
+  background: linear-gradient(145deg, #062357, #4d76a8);
+
+  /* Border Radius */
+  border-radius: 10px;
+
+  /* Shadow on all four sides */
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5),
+              5px 5px 15px rgba(0, 0, 0, 0.3),
+              -5px -5px 15px rgba(255, 255, 255, 0.1);
+
+  /* Remove hover effects */
+  transition: none;
+}
+
+h2 {
+  margin-bottom: 20px;
+  color: #c6c7f1;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid white;
+  margin-bottom: 20px;
+}
+
+input {
+  background: none;
+  border: none;
+  outline: none;
+  color: white;
+  flex: 1;
+  padding: 10px 0;
+}
+
+/* .input-container input::placeholder {
+  font-size: 17px;
+  color: #ccc;
+} */
+.input-container input::placeholder {
+  font-size: 13px !important; /* Force apply */
+  color: #ccc !important;
+}
+
+
+.icon {
+  color: white;
+}
+
+.login_submit {
+  background: linear-gradient(90deg, #7a8faa,#194783);;
+  color: white;
+  border: none;
+  padding: 10px 0;
+  border-radius: 30px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.login_submit:hover {
+  opacity: 0.9;
+}
+
+.options1 a {
+  color: #cfcff7;
+  text-decoration: none;
+  padding:10px;
+}
+
+.options1 a:hover {
+  text-decoration: underline;
+}
+
+.options1 {
+  margin-top:20px;
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+}
+/* Your existing desktop styles remain unchanged */
+
+@media screen and (max-width: 768px) { /* Tablet View */
+  .container2 {
+    flex-direction: column; /* Stack image & login form vertically */
+    height: auto;
+    width: 85%;
+    max-width: 600px;
+    padding: 30px;
+    align-items: center;
+  }
+
+  .image-section1 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 15px;
+  }
+
+  .image-section1 img {
+    width: 70%;
+    max-width: 280px;
+    height: auto;
+  }
+
+  .login-section1 {
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+  }
+}
+
+@media screen and (max-width: 480px) { /* Mobile View */
+  .container2 {
+    width: 100%;
+    max-width: 400px;
+     padding: 20px; 
+    height: 100%;
+    align-items: center;
+  }
+  .image-section1 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+     padding-bottom: 10px; 
+  }
+  .image-section1 img {
+    margin-top: 10%;
+    width: 65%;
+    max-width: 270px;
+     max-height: 400px; 
+    height:auto;
+  }
+
+  .login-section1 {
+    margin-top: 0%;
+    width: 100%;
+    margin-left: 3%;
+    padding: 10px;
+  }
+  .input-container input::placeholder {
+    font-size: 17px !important; /* Force apply */
+    color: #ccc !important;
+  }
+  .input-container {
+    width: 100%;
+  }
+  
+  .options1 {
+    flex-direction: row;
+    align-items: center;
+    font-size: 17px;
+  }
+}
+

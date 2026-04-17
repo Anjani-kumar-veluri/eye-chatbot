@@ -1,0 +1,89 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.so
+*.pyd
+*.pyo
+
+# Virtual environments
+venv/
+env/
+.venv/
+.fastapi/
+fastapi/
+Lib/
+Include/
+Scripts/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# Node modules
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build output
+dist/
+build/
+*.log
+
+# Environment variables
+.env
+.env.*
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Database and uploads
+*.sqlite3
+*.db
+
+# VSCode settings
+.vscode/
+
+# Python egg files
+*.egg-info/
+*.egg
+
+# PDF and other large data
+*.pdf
+
+# Misc
+*.bak
+*.tmp
+
+
+# Python
+__pycache__/
+*.pyc
+
+# Virtual env
+myenv/
+venv/
+
+# Models
+*.pth
+
+# Data
+data/
+coco/
+archive/
+balanced/
+testingBalanced/
+
+# Images
+*.png
+*.jpg
+
+# Zip files
+*.zip
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+
+.env
