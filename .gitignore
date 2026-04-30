@@ -74,10 +74,12 @@ coco/
 archive/
 balanced/
 testingBalanced/
+testingBalanced(2)/
+eye/
 
-# Images
-*.png
-*.jpg
+models2/
+
+
 
 # Zip files
 *.zip

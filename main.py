@@ -4,7 +4,7 @@ from langchain_huggingface import HuggingFaceEmbeddings # type: ignore
 from langchain_community.vectorstores import FAISS # type: ignore
 from ctransformers import AutoModelForCausalLM
 
-DATA_PATH =r"D:\projects\chat\data"
+DATA_PATH =r"/home/bhcp0089/Desktop/AiMedicalChatbot_updated/information"
 
 def load_pdf_files(data):
   loader = DirectoryLoader(data,glob="*.pdf",loader_cls=PyPDFLoader)
@@ -28,6 +28,6 @@ def get_embedding_model():
 
 embedding_model = get_embedding_model()
 
-DB_FAISS_PATH = r"D:\projects\chat\database"
+DB_FAISS_PATH = r"/home/bhcp0089/Desktop/AiMedicalChatbot_updated/database"
 db = FAISS.from_documents(text_chunks,embedding_model)
 db.save_local(DB_FAISS_PATH)

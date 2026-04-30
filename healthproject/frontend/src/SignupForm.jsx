@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './SignupForm.css';
 
 function SignupForm() {
-  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: '',
     email: '',
@@ -14,7 +13,7 @@ function SignupForm() {
   const [successMessage, setSuccessMessage] = useState('');
 
   // Regex for strong password
-  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+  // const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/;
 
   // Handle input changes
   const handleChange = (e) => {
@@ -28,12 +27,14 @@ function SignupForm() {
     setSuccessMessage('');
 
     // Validate password strength
-    if (!passwordRegex.test(formData.password)) {
-      setError(
-        'Password must be at least 8 characters long, with one uppercase, one lowercase, one number, and one special character.'
-      );
-      return;
-    }
+    // if (!passwordRegex.test(formData.password)) {
+    //   setError(
+    //     'Password must be at least 8 characters long, with one uppercase, one lowercase, one number, and one special character.'
+    //   );
+    //   console.log("PASSWORD ERROR");
+      
+    //   return;
+    // }
 
     try {
       const response = await axios.post('http://localhost:5000/api/auth/signup', formData);
@@ -45,6 +46,8 @@ function SignupForm() {
     } catch (err) {
       setError(err.response?.data?.message || 'Signup failed. Try again.');
     }
+
+
   };
 
   return (

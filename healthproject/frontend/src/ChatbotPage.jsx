@@ -25,7 +25,7 @@ const Chatbot = () => {
     setError("");
 
     try {
-      const response = await fetch("http://127.0.0.1:5000/chat", {
+      const response = await fetch("http://127.0.0.1:5001/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: input }),
@@ -75,7 +75,7 @@ const Chatbot = () => {
     try {
       const formData = new FormData();
       formData.append("image", file);
-      const response = await fetch("http://127.0.0.1:5000/predict-image", {
+      const response = await fetch("http://127.0.0.1:5001/predict-image", {
         method: "POST",
         body: formData,
       });
@@ -154,7 +154,7 @@ const Chatbot = () => {
     setError("");
 
     try {
-      const response = await fetch("http://127.0.0.1:5000/speech", {
+      const response = await fetch("http://127.0.0.1:5001/speech", {
         method: "POST",
       });
       const data = await response.json();

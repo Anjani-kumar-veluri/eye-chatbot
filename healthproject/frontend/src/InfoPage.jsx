@@ -22,7 +22,7 @@ const Info = () => {
         <div className="text-section">
           <p className="text3">
             <em>
-              Using this software you can ask any health-related questions and receive articles using Artificial Intelligence assistant.
+              Using this software you can ask any Opthamology-related questions and receive articles using Artificial Intelligence assistant.
             </em>
           </p>
           <div className="btn">

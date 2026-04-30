@@ -7,7 +7,7 @@ from transformers import BertTokenizer, BertForSequenceClassification
 from huggingface_hub import login
 import functionalities as fun
 from stt import recognize_speech
-from image_classify import load_model, predict_with_threshold, transform, class_names
+#from image_classify import load_model, predict_with_threshold, transform, class_names
 
 # ✅ Initialize Flask app
 app = Flask(__name__)
@@ -17,23 +17,23 @@ CORS(app)
 # ✅ Load Text-Based Medical Chatbot Model
 import os
 
-HF_TOKEN = os.getenv("HF_TOKEN")
-MODEL_PATH = r"D:\\projects\\chat\\bert_medical_classifier_pytorch"
+# HF_TOKEN = os.getenv("HF_TOKEN")
+MODEL_PATH = r"/home/bhcp0089/Desktop/AiMedicalChatbot_updated/bert_medical_classifier_pytorch/bert_medical_classifier_pytorch"
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-login(token=HF_TOKEN)
+# login(token=HF_TOKEN)
 
 tokenizer = BertTokenizer.from_pretrained(MODEL_PATH)
 bert_model = BertForSequenceClassification.from_pretrained(MODEL_PATH).to(device)
 bert_model.eval()
 
 # ✅ Load Image Classification Model
-IMAGE_MODEL_PATH = r"D:\\projects\\chat\\models\\woww.pth"
-image_model = load_model(IMAGE_MODEL_PATH)
+# IMAGE_MODEL_PATH = r"D:\\projects\\chat\\models\\woww.pth"
+# image_model = load_model(IMAGE_MODEL_PATH)
 
 # ✅ Create uploads folder
-UPLOAD_FOLDER = "uploads"
-os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+# UPLOAD_FOLDER = "uploads"
+# os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 # ✅ Store ongoing diagnosis sessions globally
 ongoing_diagnoses = {}
@@ -52,6 +52,20 @@ def chat():
     # ✅ Handle greetings and goodbyes first
     response = fun.handle_greetings_and_goodbyes(user_input)
     if response:
+        return jsonify({"response": response})
+    
+
+    # ✅ Handle Ophthal Viva Mode
+    if user_input.lower() in ["stop viva", "end viva", "exit viva"]:
+        response = fun.stop_opthal_viva(user_id)
+        return jsonify({"response": response})
+
+    elif user_id in fun.viva_sessions and fun.viva_sessions[user_id]["active"]:
+        response = fun.continue_opthal_viva(user_id, user_input)
+        return jsonify({"response": response})
+
+    elif fun.is_opthal_viva_query(user_input):
+        response = fun.start_opthal_viva(user_id, user_input)
         return jsonify({"response": response})
 
     # ✅ Ensure user history exists
@@ -158,67 +172,67 @@ def speech_to_text():
         return jsonify({"error": f"Speech recognition failed: {str(e)}"}), 500
 
 
-from torchvision import transforms
-from PIL import Image
-import torch
+# from torchvision import transforms
+# from PIL import Image
+# import torch
 
-SKIN_CLASSIFIER_MODEL = r"D:\projects\chat\models\image_classify_model.pth"
-binary_model = load_model(SKIN_CLASSIFIER_MODEL, num_classes=2)  # Binary classification (2 classes)
+# SKIN_CLASSIFIER_MODEL = r"D:\projects\chat\models\image_classify_model.pth"
+# binary_model = load_model(SKIN_CLASSIFIER_MODEL, num_classes=2)  # Binary classification (2 classes)
 
-# ✅ Load Skin Disease Classification Model (20 Classes)
-DISEASE_CLASSIFIER_MODEL = r"D:\projects\chat\models\woww.pth"
-image_model = load_model(DISEASE_CLASSIFIER_MODEL, num_classes=19)  # Multi-class classification (20 classes)
+# # ✅ Load Skin Disease Classification Model (20 Classes)
+# DISEASE_CLASSIFIER_MODEL = r"D:\projects\chat\models\woww.pth"
+# image_model = load_model(DISEASE_CLASSIFIER_MODEL, num_classes=19)  # Multi-class classification (20 classes)
 
-# ✅ Define Image Transform for Binary Classification
-binary_transform = transforms.Compose([
-    transforms.Resize((224, 224)), 
-    transforms.ToTensor(),
-    transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
-])
+# # ✅ Define Image Transform for Binary Classification
+# binary_transform = transforms.Compose([
+#     transforms.Resize((224, 224)), 
+#     transforms.ToTensor(),
+#     transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+# ])
 
-def predict_skin_or_non_skin(image_path):
-    """Predicts if an image is skin-related using the binary classifier."""
-    image = Image.open(image_path).convert("RGB")
-    image = binary_transform(image).unsqueeze(0)  # Apply transforms & add batch dimension
+# def predict_skin_or_non_skin(image_path):
+#     """Predicts if an image is skin-related using the binary classifier."""
+#     image = Image.open(image_path).convert("RGB")
+#     image = binary_transform(image).unsqueeze(0)  # Apply transforms & add batch dimension
 
-    with torch.no_grad():
-        output = binary_model(image)  # This will return a tensor with 2 values
+#     with torch.no_grad():
+#         output = binary_model(image)  # This will return a tensor with 2 values
 
-    probabilities = torch.nn.functional.softmax(output, dim=1)  # Convert to probabilities
-    predicted_class = torch.argmax(probabilities, dim=1).item()  # Get class index (0 or 1)
+#     probabilities = torch.nn.functional.softmax(output, dim=1)  # Convert to probabilities
+#     predicted_class = torch.argmax(probabilities, dim=1).item()  # Get class index (0 or 1)
 
-    return predicted_class == 1  # Assuming class 1 is "skin", class 0 is "non-skin"
+#     return predicted_class == 1  # Assuming class 1 is "skin", class 0 is "non-skin"
 
-@app.route("/predict-image", methods=["POST"])
-def predict_image():
-    """Handles image-based predictions, first checking if the image is skin-related."""
-    if "image" not in request.files:
-        return jsonify({"error": "No image file provided"}), 400
+# @app.route("/predict-image", methods=["POST"])
+# def predict_image():
+#     """Handles image-based predictions, first checking if the image is skin-related."""
+#     if "image" not in request.files:
+#         return jsonify({"error": "No image file provided"}), 400
 
-    image_file = request.files["image"]
-    if image_file.filename == "":
-        return jsonify({"error": "Empty filename"}), 400
+#     image_file = request.files["image"]
+#     if image_file.filename == "":
+#         return jsonify({"error": "Empty filename"}), 400
 
-    try:
-        # ✅ Save uploaded image
-        image_path = os.path.join(UPLOAD_FOLDER, image_file.filename)
-        image_file.save(image_path)
+#     try:
+#         # ✅ Save uploaded image
+#         image_path = os.path.join(UPLOAD_FOLDER, image_file.filename)
+#         image_file.save(image_path)
 
-        # ✅ Step 1: Check if image is skin-related using the binary classifier
-        is_skin = predict_skin_or_non_skin(image_path)  # Fixed function
+#         # ✅ Step 1: Check if image is skin-related using the binary classifier
+#         is_skin = predict_skin_or_non_skin(image_path)  # Fixed function
 
-        if not is_skin:
-            os.remove(image_path)
-            return jsonify({"response": "This is not a skin-related image. Please upload a valid skin image."})
+#         if not is_skin:
+#             os.remove(image_path)
+#             return jsonify({"response": "This is not a skin-related image. Please upload a valid skin image."})
 
-        # ✅ Step 2: If it's a skin image, classify the disease
-        result = predict_with_threshold(image_model, image_path, transform, class_names, threshold=80)
-        os.remove(image_path)
-        return jsonify(result)
+#         # ✅ Step 2: If it's a skin image, classify the disease
+#         result = predict_with_threshold(image_model, image_path, transform, class_names, threshold=80)
+#         os.remove(image_path)
+#         return jsonify(result)
 
-    except Exception as e:
-        return jsonify({"error": f"Image prediction failed: {str(e)}"}), 500
+#     except Exception as e:
+#         return jsonify({"error": f"Image prediction failed: {str(e)}"}), 500
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(port=5001, debug=True)

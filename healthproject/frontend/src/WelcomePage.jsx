@@ -15,7 +15,7 @@ const WelcomePage = () => {
     <div className="cc">
       <div className="container_wel" onClick={handleNavigation}>
         <img src={image} alt="AI Health Care Chatbot" className="robot3" />
-        <p className="text">AI Health Care Chatbot</p>
+        <p className="text">AI Opthamology Chatbot</p>
       </div>
     </div>
     </center>
