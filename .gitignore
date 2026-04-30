@@ -76,6 +76,11 @@ balanced/
 testingBalanced/
 testingBalanced(2)/
 eye/
+bert_medical_classifier_pytorch/bert_medical_classifier_pytorch/
+bert_medical_classifier_pytorch/bert_medical_classifier_tf/
+bert_medical_classifier_pytorch/results/
+
+
 
 models2/
 
