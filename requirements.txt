@@ -11,3 +11,8 @@ faiss-cpu
 sentence-transformers
 flask
 pymongo
+
+gdown
+python-dotenv
+fastapi
+uvicorn
