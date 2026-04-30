@@ -20,9 +20,9 @@ login(HF_TOKEN)
 print("HF TOKEN:", HF_TOKEN)
 
 huggingface_repo_id = "mistralai/Mistral-7B-Instruct-v0.2"
-DB_FAISS_PATH = r"/home/bhcp0089/Desktop/AiMedicalChatbot_updated/database"
+DB_FAISS_PATH = r"database"
 
-MODEL_PATH = r"/home/bhcp0089/Desktop/AiMedicalChatbot_updated/bert_medical_classifier_pytorch/bert_medical_classifier_pytorch"
+MODEL_PATH = r"bert_medical_classifier_pytorch/bert_medical_classifier_pytorch"
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 tokenizer = BertTokenizer.from_pretrained(MODEL_PATH)
@@ -37,7 +37,7 @@ embedding_model = get_embedding_model()
 
 # ✅ Load LLM only once globally
 llm = CTransformers(
-    model=r"/home/bhcp0089/Desktop/AiMedicalChatbot_updated/models2/mistral-7b-instruct-v0.2.Q4_K_M.gguf",
+    model=r"models2/mistral-7b-instruct-v0.2.Q4_K_M.gguf",
     model_type="mistral",
     config={
         "max_new_tokens": 250,
