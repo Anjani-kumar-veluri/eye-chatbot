@@ -18,7 +18,7 @@ CORS(app)
 import os
 
 # HF_TOKEN = os.getenv("HF_TOKEN")
-MODEL_PATH = r"bert_medical_classifier_pytorch/bert_medical_classifier_pytorch"
+MODEL_PATH = r"/home/bhcp0089/Desktop/AiMedicalChatbot_updated/bert_medical_classifier_pytorch/bert_medical_classifier_pytorch"
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # login(token=HF_TOKEN)

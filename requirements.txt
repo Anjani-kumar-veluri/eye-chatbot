@@ -66,3 +66,6 @@ pyaudio==0.2.14
 
 # Google Drive download
 gdown==5.2.0
+
+rapidfuzz 
+pyspellchecker
