@@ -21,8 +21,8 @@ else:
     print("HF TOKEN not found. If needed, set it using: export HF_TOKEN='your_token'")
 
 
-DB_FAISS_PATH = r"/home/bhcp0089/Desktop/AiMedicalChatbot_updated/database"
-MODEL_PATH = r"/home/bhcp0089/Desktop/AiMedicalChatbot_updated/bert_medical_classifier_pytorch/bert_medical_classifier_pytorch"
+DB_FAISS_PATH = r"database"
+MODEL_PATH = r"bert_medical_classifier_pytorch/bert_medical_classifier_pytorch"
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
